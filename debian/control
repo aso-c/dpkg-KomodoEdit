@@ -1,0 +1,15 @@
+Source: komodoedit-8.5.3-aso+dfsg
+Section: unknown
+Priority: optional
+Maintainer: Solomatov A.A. <aso17@ro.ru>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.4
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Git: git://git.debian.org/collab-maint/komodoedit-8.5.3-aso+dfsg.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/komodoedit-8.5.3-aso+dfsg.git;a=summary
+
+Package: komodoedit-8.5.3-aso+dfsg
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>
