@@ -1,15 +1,28 @@
-Source: komodoedit-8.5.3-aso+dfsg
-Section: unknown
+#Source: komodoedit-8.5.3-aso+dfsg
+Source: komodoedit
+#Section: contrib/editors
+Section: editors
+#Section: editors|devel
 Priority: optional
 Maintainer: Solomatov A.A. <aso17@ro.ru>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.4
-Homepage: <insert the upstream URL, if relevant>
+Homepage: http://komodoide.com/komodo-edit/
 #Vcs-Git: git://git.debian.org/collab-maint/komodoedit-8.5.3-aso+dfsg.git
 #Vcs-Browser: http://git.debian.org/?p=collab-maint/komodoedit-8.5.3-aso+dfsg.git;a=summary
 
-Package: komodoedit-8.5.3-aso+dfsg
-Architecture: any
+#Package: komodoedit-8.5.3-aso+dfsg
+Package: komodoedit
+#Architecture: any
+#Architecture: i386
+Architecture: amd64
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+#Description: Komodo Edit is a free& Open-Source counterpart of Komodo IDE
+# Looking for a powerful editor without all the advanced functionality
+# an IDE comes with? Komodo Edit is for you.
+Description: Komodo Edit a free, fast and multi-language code editor
+ Komodo Edit is a free text editor for dynamic programming languages.
+ It was introduced in January 2007 to complement Active State's
+ commercial Komodo IDE. With the release of version 4.3, Komodo Edit
+ is built on top of the Open Komodo project. Many of Komodo's
+ features are derived from an embedded Python interpreter.
