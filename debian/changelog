@@ -1,3 +1,10 @@
+komodoedit (8.5.3-aso+dfsg-0.03) unstable; urgency=medium
+
+  * Implemented autodetection amd64 architecture & conditional switching
+    for cross-building package on amd64 system for i386 arch.
+
+ -- Solomatov A.A. <aso@netbook-aso>  Fri, 09 Jan 2015 23:10:31 +0400
+
 komodoedit (8.5.3-aso+dfsg-0.02) unstable; urgency=low
 
   * Create in debian/rules a few varuables
