@@ -1,3 +1,10 @@
+komodoedit (8.5.3-aso+dfsg-0.02) unstable; urgency=low
+
+  * Create in debian/rules a few varuables
+    for cross-building on amd64 sys for i386.
+
+ -- Solomatov A.A. <aso17@ro.ru>  Thu, 08 Jan 2015 21:34:07 +0400
+
 komodoedit (8.5.3-aso+dfsg-0.01) unstable; urgency=low
 
   * Initial release: Komodo Edit v.8.5.3. tarball debianisation.
