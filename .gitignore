@@ -1,2 +1,4 @@
 debian/*.log
 debian/komodoedit/
+debian/files
+debian/komodoedit.substvars

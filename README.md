@@ -13,15 +13,14 @@ Origin: http://komodoide.com/download/edit-linux
 ##Building debian package
 
 1. Create package directory with name by scheme:
-    [package_name]-[version]-[debian-revision]
+    [package_name]-[version]~[app_suffix]-[debian-revision]
 2. Checkout/clone Debian control directory in this calalog.
-3. Create symlink into original Komodo Edit tarball with name komoidoiedit-<version>-<debian_revision>.
+3. Create symlink into original Komodo Edit tarball with name komoidoiedit_<version>~<app_suffix>.orig.tar.gz.
 4. Fix the content debian/rules, debian/control & debian/changelog files with actual information
     about version, architecture & current maintainer of debianising Komodo Edit tarball.
 4. Run debuild --no-lintian -b
     Additional options:
         -us - not subscribe source
         -uc - not subscribe changelog
-        -ai386 - force set architecture to i386 (not work) 
         -ai386 - force set architecture to i386 (on amd64 cross-compile) 
 

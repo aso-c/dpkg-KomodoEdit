@@ -1,16 +1,20 @@
+komodoedit (8.5.3~aso+dfsg-ubuntu0.05) unstable; urgency=medium
+
+  * Changed format the version string - separate standart version
+    from maintaned suffix by tilde '~'.
+  * Expand original archive into working tree.
+  * Set correct value for Origin, Vcs-Git & Vcs-Browser.
+
+ -- Solomatov A.A. <aso17@ro.ru>  Fri, 09 Jan 2015 23:51:17 +0400
+
 komodoedit (8.5.3-aso+dfsg-0.03) unstable; urgency=medium
-
-  * Implemented autodetection amd64 architecture & conditional switching
-    for cross-building package on amd64 system for i386 arch.
-
- -- Solomatov A.A. <aso@netbook-aso>  Fri, 09 Jan 2015 23:10:31 +0400
-
-komodoedit (8.5.3-aso+dfsg-0.02) unstable; urgency=low
 
   * Create in debian/rules a few varuables
     for cross-building on amd64 sys for i386.
+  * Implemented autodetection amd64 architecture & conditional switching
+    for cross-building package on amd64 system for i386 arch.
 
- -- Solomatov A.A. <aso17@ro.ru>  Thu, 08 Jan 2015 21:34:07 +0400
+ -- Solomatov A.A. <aso17@ro.ru>  Fri, 09 Jan 2015 23:10:31 +0400
 
 komodoedit (8.5.3-aso+dfsg-0.01) unstable; urgency=low
 

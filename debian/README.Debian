@@ -1,6 +1,12 @@
 komodoedit-8.5.3-aso+dfsg for Debian
 ------------------------------------
 
-<possible notes regarding this package - if none, delete this file>
+   Komodo Edit a free, fast and multi-language code editor for
+dynamic programming languages.
+   It was introduced in January 2007 to complement Active State's
+commercial Komodo IDE. With the release of version 4.3, Komodo Edit
+is built on top of the Open Komodo project. Many of Komodo's features
+are derived from an embedded Python interpreter.
+   Komodo Edit is a free& Open-Source counterpart of Komodo IDE
 
- -- Solomatov A.A. <aso17@ro.ru>  Mon, 05 Jan 2015 11:32:18 +0400
+ -- Solomatov A.A. <aso17@ro.ru>  Sat, 10 Jan 2015 01:26:29 +0400
