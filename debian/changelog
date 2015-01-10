@@ -1,9 +1,11 @@
-komodoedit (8.5.3~aso+dfsg-ubuntu0.05) unstable; urgency=medium
+komodoedit (8.5.3~aso+dfsg-ubuntu0.07) unstable; urgency=medium
 
-  * Changed format the version string - separate standart version
-    from maintaned suffix by tilde '~'.
+  * Changed format the version string - separate standard version
+    from maintaned suffix by tilda '~'.
   * Expand original archive into working tree.
   * Set correct value for Origin, Vcs-Git & Vcs-Browser.
+  * Using access into expanded original pdckage archive
+    with `ls -d` command for filling "pkg_dir" variables
 
  -- Solomatov A.A. <aso17@ro.ru>  Fri, 09 Jan 2015 23:51:17 +0400
 
