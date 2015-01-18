@@ -1,3 +1,12 @@
+komodoedit (8.5.3~aso+dfsg-ubuntu0.08) unstable; urgency=medium
+
+  * Detect directory name of expanded original archive by
+    grep 'install.sh' string from output of tar listing arc.
+  * Assign value to make variables with 'shell' command
+    for example, $(shell ls) assigned directory list to desired var.
+
+ -- Solomatov A.A. <aso17@ro.ru>  Mon, 19 Jan 2015 12:33:56 +0400
+
 komodoedit (8.5.3~aso+dfsg-ubuntu0.07) unstable; urgency=medium
 
   * Changed format the version string - separate standard version
