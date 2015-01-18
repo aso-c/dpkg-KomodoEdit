@@ -64,6 +64,10 @@ pkg_ext = tar.gz
 #bin_org = $(deb_)/tmp/$(pkg_name)
 #bin_root = $(deb_)/tmp
 bin_root = debian/tmp
+#pkg_dir := `tar -tzf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) | grep -m1 'install\.sh'`
+pkg_dir := $(shell tar -tzf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) | grep -m1 'install\.sh')
+#pkg_dir := $(shell ls)
+pkg_dir1:= $(pkg_dir)
 
 #dh_testdir
 override_dh_auto_configure:
@@ -75,10 +79,14 @@ override_dh_auto_configure:
 	touch `ls -d $(bin_root)/K*`/rfc-[Komodo]---qqq   # and this
 
 #override_dh_auto_build: pkg_dir = $(bin_root)/abcdefg
-override_dh_auto_build: pkg_dir = `ls -d $(bin_root)`
+#override_dh_auto_build: pkg_dir = `ls -d $(bin_root)`
+override_dh_auto_build: pkg_dir_a1 = `tar -tzf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) | grep -m1 'install\.sh'`
 override_dh_auto_build:
 #dh_auto_test
 
+#	tar -tzvf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) | grep -m1 ' [^/]*/install\.sh' > arch.name
+#	tar -tzf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) | grep -m1 'install\.sh' > arch.name
+	echo $(pkg_dir) > arch.name
 #pkg_dir = `ls -d $(bin_root)`
 	@echo '##################################################################################'
 	ls $(bin_root)
@@ -86,8 +94,11 @@ override_dh_auto_build:
 	ls `ls -d $(bin_root)`
 	ls `ls -d $(bin_root)`/
 	ls `ls -d $(bin_root)`/*
-	echo pkg_dir is: $(pkg_dir)
-	ls $(pkg_dir)/K*
+#	echo pkg_dir is: $(pkg_dir)
+	echo pkg_dir is: $(pkg_dir), $(pkg_dir1)
+	echo pkg_dir_a1 is: $(pkg_dir)
+	ls ${pkg_dir}/K*
+#	ls $(bin_root)/${pkg_dir_a1}/K*
 	@echo '##################################################################################'
 #	@echo '# DEB_SOURCE: the source package name: $(DEB_SOURCE)'
 #	@echo '# DEB_VERSION: the full version of the package (epoch + upstream vers. + revision): $(DEB_VERSION)'
