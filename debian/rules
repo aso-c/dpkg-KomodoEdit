@@ -2,10 +2,11 @@
 # -*- makefile -*-
 
 # Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
+export DH_VERBOSE=1
 
 # This has to be exported to make some magic below work.
-export DH_OPTIONS #= -v
+#export DH_OPTIONS #= -v
+export DH_OPTIONS = -v
 
 # The build architecture is the architecture on which debian/rules is run
 # and the package build is performed.
@@ -67,10 +68,31 @@ bin_root = $(deb_)/tmp
 org_pkg := $(shell tar -tzf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) | grep -m1 'install\.sh')
 org_pkg := $(shell dirname $(org_pkg))
 
-#dh_testdir
+#
+##dh_testdir
 #override_dh_auto_configure:
-#override_dh_auto_build: pkg_dir = $(bin_root)/abcdefg
-#override_dh_auto_build:
+#
+#	@echo '===>> Expand install package...'
+#	mkdir $(bin_root)
+#	tar -xzvf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) -C $(bin_root)
+##	mkdir $(bin_root)/$(org_pkg)        # temporary - only for debugging
+#
+##override_dh_auto_build: pkg_dir = $(bin_root)/abcdefg
+override_dh_auto_build:
+
+	@echo '===>> Expand install package...'
+	mkdir $(bin_root)
+	tar -xzvf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) -C $(bin_root)
+#	mkdir -p $(bin_root)/$(org_pkg)        # temporary - only for debugging
+
+#--------------------------------------------------
+#	$(bin_root)/$(org_pkg)/install.sh -I debian/$(DEB_SOURCE)/usr -s
+#	echo "Listing of debian/komodoedit/usr:\n" > templisting
+#	ls debian/$(DEB_SOURCE)/* >> templisting
+##  -I, --install-dir <dir>     specify install directory
+##  -s, --suppress-shortcut     do NOT install desktop shortcut
+#
+
 ##dh_auto_test
 #
 #	@echo '##################################################################################'
@@ -83,17 +105,29 @@ org_pkg := $(shell dirname $(org_pkg))
 
 override_dh_prep:
 
-	dh_prep
-	@echo '===>> Expand install package...'
-	mkdir $(bin_root)
-	tar -xzvf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) -C $(bin_root)
-#	mkdir $(bin_root)/$(org_pkg)        # temporary - only for debugging
+	dh_prep --exclude=tmp
+
+# override_dh_prep:
+# 
+# 	dh_prep
+# 	@echo '===>> Expand install package...'
+# 	mkdir $(bin_root)
+# 	tar -xzvf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) -C $(bin_root)
+# #	mkdir $(bin_root)/$(org_pkg)        # temporary - only for debugging
 
 #
 #inst = cp $(bin_root)/$(pkg_name)/$(1) debian/$(pkg_name)$(2)
 #
-#verride_dh_auto_install:
+override_dh_auto_install:
+#--------------------------------------------------
+	$(bin_root)/$(org_pkg)/install.sh -I debian/$(DEB_SOURCE)/usr -s
+	echo "Listing of debian/komodoedit/usr:\n" > templisting
+	ls debian/$(DEB_SOURCE)/* >> templisting
+#  -I, --install-dir <dir>     specify install directory
+#  -s, --suppress-shortcut     do NOT install desktop shortcut
 
+#verride_dh_auto_install:
+#
 #	@echo '##################################################################################'
 #	echo org_pkg dir is: $(bin_root)/$(org_pkg)
 #	ls $(bin_root)/${org_pkg}
