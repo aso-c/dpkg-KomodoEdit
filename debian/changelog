@@ -1,3 +1,9 @@
+komodoedit (8.5.3~aso+dfsg-ubuntu0.1) unstable; urgency=medium
+
+  * First really build of debian package for Komodo Edit.
+
+ -- Solomatov A.A. <aso17@ro.ru>  Wed, 28 Jan 2015 22:34:32 +0400
+
 komodoedit (8.5.3~aso+dfsg-ubuntu0.09) unstable; urgency=medium
 
   * Automatic install Komodo Edit into package build directory.

@@ -68,52 +68,20 @@ bin_root = $(deb_)/tmp
 org_pkg := $(shell tar -tzf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) | grep -m1 'install\.sh')
 org_pkg := $(shell dirname $(org_pkg))
 
-#
 ##dh_testdir
 #override_dh_auto_configure:
-#
-#	@echo '===>> Expand install package...'
-#	mkdir $(bin_root)
-#	tar -xzvf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) -C $(bin_root)
-##	mkdir $(bin_root)/$(org_pkg)        # temporary - only for debugging
-#
 ##override_dh_auto_build: pkg_dir = $(bin_root)/abcdefg
-override_dh_auto_build:
+#override_dh_auto_build:
 
+##dh_auto_test
+
+override_dh_prep:
+ 
+	dh_prep --exclude=debian/tmp
 	@echo '===>> Expand install package...'
 	mkdir $(bin_root)
 	tar -xzvf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) -C $(bin_root)
-#	mkdir -p $(bin_root)/$(org_pkg)        # temporary - only for debugging
-
-#--------------------------------------------------
-#	$(bin_root)/$(org_pkg)/install.sh -I debian/$(DEB_SOURCE)/usr -s
-#	echo "Listing of debian/komodoedit/usr:\n" > templisting
-#	ls debian/$(DEB_SOURCE)/* >> templisting
-##  -I, --install-dir <dir>     specify install directory
-##  -s, --suppress-shortcut     do NOT install desktop shortcut
-#
-
-##dh_auto_test
-#
-#	@echo '##################################################################################'
-#	echo org_pkg dir is: $(bin_root)/$(org_pkg)
-#	ls $(bin_root)/${org_pkg}
-#	ls $(bin_root)
-#	#s $(deb_)
-#	@echo '##################################################################################'
-#	#cp $(bin_root)/$(org_pkg)/INSTALLDIR/* debian/$(DEB_SOURCE)/usr
-
-override_dh_prep:
-
-	dh_prep --exclude=tmp
-
-# override_dh_prep:
-# 
-# 	dh_prep
-# 	@echo '===>> Expand install package...'
-# 	mkdir $(bin_root)
-# 	tar -xzvf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) -C $(bin_root)
-# #	mkdir $(bin_root)/$(org_pkg)        # temporary - only for debugging
+#	mkdir $(bin_root)/$(org_pkg)        # temporary - only for debugging
 
 #
 #inst = cp $(bin_root)/$(pkg_name)/$(1) debian/$(pkg_name)$(2)
@@ -121,8 +89,7 @@ override_dh_prep:
 override_dh_auto_install:
 #--------------------------------------------------
 	$(bin_root)/$(org_pkg)/install.sh -I debian/$(DEB_SOURCE)/usr -s
-	echo "Listing of debian/komodoedit/usr:\n" > templisting
-	ls debian/$(DEB_SOURCE)/* >> templisting
+	rm debian/$(DEB_SOURCE)/usr/share/doc
 #  -I, --install-dir <dir>     specify install directory
 #  -s, --suppress-shortcut     do NOT install desktop shortcut
 
