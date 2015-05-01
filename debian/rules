@@ -68,6 +68,9 @@ bin_root = $(deb_)/tmp
 org_pkg := $(shell tar -tzf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) | grep -m1 'install\.sh')
 org_pkg := $(shell dirname $(org_pkg))
 
+#instune = $(shell $1 $(deb_)/$(DEB_SOURCE)/$(2) $(deb_)/$(DEB_SOURCE)/$(3))
+instune = $1 $(deb_)/$(DEB_SOURCE)/$(2) $(deb_)/$(DEB_SOURCE)/$(3)
+
 ##dh_testdir
 #override_dh_auto_configure:
 ##override_dh_auto_build: pkg_dir = $(bin_root)/abcdefg
@@ -80,6 +83,9 @@ override_dh_prep:
 	dh_prep --exclude=debian/tmp
 	@echo '===>> Expand install package...'
 	mkdir $(bin_root)
+	pwd
+	ls ..
+	echo tar -xzvf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) -C $(bin_root)
 	tar -xzvf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) -C $(bin_root)
 #	mkdir $(bin_root)/$(org_pkg)        # temporary - only for debugging
 
@@ -114,23 +120,28 @@ override_dh_auto_install:
 #	tar xzvf ../$(pkg_name)-$(pkg_ver).$(pkg_arch).$(pkg_ext) -C $(bin_root)
 #	mv $(bin_root)/$(pkg_name)-$(pkg_ver) $(bin_root)/$(pkg_name)
 #	chmod ugo-x $(bin_root)/$(pkg_name)/share/appdata/*
-#	chmod ugo-x $(bin_root)/$(pkg_name)/libraries/MCAD/*.scad
-#	chmod ugo-x $(bin_root)/$(pkg_name)/libraries/MCAD/*.txt
-#	chmod ugo-x $(bin_root)/$(pkg_name)/libraries/MCAD/*.markdown
-#	chmod ugo-x $(bin_root)/$(pkg_name)/libraries/MCAD/TODO
-#	chmod ugo-x $(bin_root)/$(pkg_name)/libraries/MCAD/bitmap/*
 #	$(call inst,share/appdata/openscad.xml,.sharedmimeinfo)
 #
-#override_dh_icons:
+override_dh_icons: instune = $1 $(deb_)/$(DEB_SOURCE)/$(2) $(deb_)/$(DEB_SOURCE)/$(3)
+##override_dh_icons: reinst = mv $(deb_)/$(DEB_SOURCE)/$(1) $(deb_)/$(DEB_SOURCE)/$(2)
+##override_dh_icons: instclone = cp $(deb_)/$(DEB_SOURCE)/$(1) $(deb_)/$(DEB_SOURCE)/$(2)
+override_dh_icons:
+
+	mkdir $(deb_)/$(DEB_SOURCE)/usr/share/icons/locolor
+	mkdir $(deb_)/$(DEB_SOURCE)/usr/share/icons/hicolor
 #	$(call inst,share/appdata/openscad.png,/usr/share/pixmaps/)
-#	dh_icons
+	$(call instune,mv,usr/share/icons/komodo16.png,/usr/share/icons/locolor)
+	dh_icons
 #
 ##override_dh_installexamples:
 ##	$(call inst,examples/*,/usr/share/openscad/examples/)
 #
 #override_dh_makeshlibs:
-## skipped
-#
-#override_dh_shlibdeps:
-## skipped
-#
+# skipped
+
+override_dh_shlibdeps:
+# skipped
+
+override_dh_strip:
+# skipped
+

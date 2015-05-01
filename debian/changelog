@@ -7,7 +7,7 @@ komodoedit (8.5.3~aso+dfsg-ubuntu0.1) unstable; urgency=medium
 komodoedit (8.5.3~aso+dfsg-ubuntu0.09) unstable; urgency=medium
 
   * Automatic install Komodo Edit into package build directory.
-  * Distrybute any package build functions by debian/rules targets.
+  * Distribute any package build functions by debian/rules targets.
 
  -- Solomatov A.A. <aso17@ro.ru>  Sun, 25 Jan 2015 22:55:19 +0400
 

@@ -4,7 +4,7 @@ Section: universe/editors
 #Section: editors|devel
 Priority: optional
 Maintainer: Solomatov A.A. <aso17@ro.ru>
-Build-Depends: debhelper (>= (.0.0)
+Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 8.5.3
 Homepage: http://komodoide.com/komodo-edit/
 Origin: http://komodoide.com/download/edit-linux
