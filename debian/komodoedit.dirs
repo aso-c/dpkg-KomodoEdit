@@ -1,0 +1,11 @@
+usr
+#usr/bin
+#usr/lib
+#usr/lib/openscad
+usr/share
+#usr/share/appdata
+#usr/share/applications
+#usr/share/mime/packages
+usr/share/icons
+usr/share/icons/locolor
+usr/share/icons/hicolor

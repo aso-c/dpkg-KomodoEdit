@@ -83,8 +83,8 @@ override_dh_prep:
 	dh_prep --exclude=debian/tmp
 	@echo '===>> Expand install package...'
 	mkdir $(bin_root)
-	pwd
-	ls ..
+#	pwd
+#	ls ..
 	echo tar -xzvf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) -C $(bin_root)
 	tar -xzvf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) -C $(bin_root)
 #	mkdir $(bin_root)/$(org_pkg)        # temporary - only for debugging
@@ -92,12 +92,16 @@ override_dh_prep:
 #
 #inst = cp $(bin_root)/$(pkg_name)/$(1) debian/$(pkg_name)$(2)
 #
+override_dh_installdirs:
+# skipped
+
 override_dh_auto_install:
 #--------------------------------------------------
 	$(bin_root)/$(org_pkg)/install.sh -I debian/$(DEB_SOURCE)/usr -s
 	rm debian/$(DEB_SOURCE)/usr/share/doc
 #  -I, --install-dir <dir>     specify install directory
 #  -s, --suppress-shortcut     do NOT install desktop shortcut
+#	dh_installdir
 
 #verride_dh_auto_install:
 #
@@ -122,21 +126,21 @@ override_dh_auto_install:
 #	chmod ugo-x $(bin_root)/$(pkg_name)/share/appdata/*
 #	$(call inst,share/appdata/openscad.xml,.sharedmimeinfo)
 #
-override_dh_icons: instune = $1 $(deb_)/$(DEB_SOURCE)/$(2) $(deb_)/$(DEB_SOURCE)/$(3)
-##override_dh_icons: reinst = mv $(deb_)/$(DEB_SOURCE)/$(1) $(deb_)/$(DEB_SOURCE)/$(2)
-##override_dh_icons: instclone = cp $(deb_)/$(DEB_SOURCE)/$(1) $(deb_)/$(DEB_SOURCE)/$(2)
+##override_dh_icons: instune = $1 $(deb_)/$(DEB_SOURCE)/$(2) $(deb_)/$(DEB_SOURCE)/$(3)
+override_dh_icons: reinst = $(call instune,mv,$(1),$(2))
+override_dh_icons: instclone = $(call instune,cp,$(1),$(2))
 override_dh_icons:
 
-	mkdir $(deb_)/$(DEB_SOURCE)/usr/share/icons/locolor
-	mkdir $(deb_)/$(DEB_SOURCE)/usr/share/icons/hicolor
-#	$(call inst,share/appdata/openscad.png,/usr/share/pixmaps/)
-	$(call instune,mv,usr/share/icons/komodo16.png,/usr/share/icons/locolor)
+#	mkdir $(deb_)/$(DEB_SOURCE)/usr/share/icons/locolor
+#	mkdir $(deb_)/$(DEB_SOURCE)/usr/share/icons/hicolor
+	$(call instclone,usr/share/icons/komodo16.png,/usr/share/icons/locolor)
+	$(call reinst,usr/share/icons/komodo16.png,/usr/share/icons/hicolor)
 	dh_icons
 #
 ##override_dh_installexamples:
 ##	$(call inst,examples/*,/usr/share/openscad/examples/)
-#
-#override_dh_makeshlibs:
+
+override_dh_makeshlibs:
 # skipped
 
 override_dh_shlibdeps:
