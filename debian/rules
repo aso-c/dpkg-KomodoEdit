@@ -68,8 +68,9 @@ bin_root = $(deb_)/tmp
 org_pkg := $(shell tar -tzf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) | grep -m1 'install\.sh')
 org_pkg := $(shell dirname $(org_pkg))
 
-#instune = $(shell $1 $(deb_)/$(DEB_SOURCE)/$(2) $(deb_)/$(DEB_SOURCE)/$(3))
-instune = $1 $(deb_)/$(DEB_SOURCE)/$(2) $(deb_)/$(DEB_SOURCE)/$(3)
+#instune = $(shell $1 $(deb_)/$(DEB_SOURCE)$(4)/$(2) $(deb_)/$(DEB_SOURCE)$(4)/$(3))
+instune = $1 $(deb_)/$(DEB_SOURCE)$(4)/$(2) $(deb_)/$(DEB_SOURCE)$(4)/$(3)
+einstune = echo $(instune)
 
 ##dh_testdir
 #override_dh_auto_configure:
@@ -83,15 +84,10 @@ override_dh_prep:
 	dh_prep --exclude=debian/tmp
 	@echo '===>> Expand install package...'
 	mkdir $(bin_root)
-#	pwd
-#	ls ..
-	echo tar -xzvf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) -C $(bin_root)
+#	echo tar -xzvf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) -C $(bin_root)
 	tar -xzvf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) -C $(bin_root)
 #	mkdir $(bin_root)/$(org_pkg)        # temporary - only for debugging
 
-#
-#inst = cp $(bin_root)/$(pkg_name)/$(1) debian/$(pkg_name)$(2)
-#
 override_dh_installdirs:
 # skipped
 
@@ -127,14 +123,12 @@ override_dh_auto_install:
 #	$(call inst,share/appdata/openscad.xml,.sharedmimeinfo)
 #
 ##override_dh_icons: instune = $1 $(deb_)/$(DEB_SOURCE)/$(2) $(deb_)/$(DEB_SOURCE)/$(3)
-override_dh_icons: reinst = $(call instune,mv,$(1),$(2))
-override_dh_icons: instclone = $(call instune,cp,$(1),$(2))
+override_dh_icons: reinst = $(call einstune,mv,$(1),$(2),$(3))
+override_dh_icons: instclone = $(call einstune,cp,$(1),$(2),$(3))
 override_dh_icons:
 
-#	mkdir $(deb_)/$(DEB_SOURCE)/usr/share/icons/locolor
-#	mkdir $(deb_)/$(DEB_SOURCE)/usr/share/icons/hicolor
-	$(call instclone,usr/share/icons/komodo16.png,/usr/share/icons/locolor)
-	$(call reinst,usr/share/icons/komodo16.png,/usr/share/icons/hicolor)
+	$(call instclone,usr/share/icons/komodo16.png,/usr/share/icons/locolor/,/usr/share)
+	$(call reinst,usr/share/icons/komodo16.png,/usr/share/icons/hicolor/,/usr/share)
 	dh_icons
 #
 ##override_dh_installexamples:

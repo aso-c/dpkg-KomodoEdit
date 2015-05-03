@@ -1,11 +1,22 @@
-komodoedit (8.5.3~aso+dfsg-ubuntu0.1.3) unstable; urgency=low
+komodoedit (8.5.3~aso+dfsg-ubuntu0.1.4) unstable; urgency=low
+
+  * Modify macro 'instune' for users basedir added at package tree root;
+    Create macro 'einstune' - echoimg the 'instune' content;
+    Macros 'reinst' & 'instclome' modified for using basedir & using einstune
+    for debug.
+  * 
+
+ -- Solomatov A.A. <aso@netbook-aso>  Sun, 03 May 2015 19:28:40 +0400
+
+komodoedit (8.5.3~aso+dfsg-ubuntu0.1.2) unstable; urgency=low
 
   * Create makefile macro 'instune' - tune files positions in the
     package tree.
   * Recreate macro 'instune' as global macro; create macro
     'reinst' & 'instclone' - move or copy installed files
     into new position.
-  * Create file debian/dirs for additional directory in package tree;
+  * Create a file debian/komodoedit.dirs for additional directory
+    in the package tree;
     tune debian/rules for them.
 
  -- Solomatov A.A. <aso17@ro.ru>  Sat, 02 May 2015 14:42:17 +0400
