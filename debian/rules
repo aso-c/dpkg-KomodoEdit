@@ -68,9 +68,8 @@ bin_root = $(deb_)/tmp
 org_pkg := $(shell tar -tzf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) | grep -m1 'install\.sh')
 org_pkg := $(shell dirname $(org_pkg))
 
-#instune = $(shell $1 $(deb_)/$(DEB_SOURCE)$(4)/$(2) $(deb_)/$(DEB_SOURCE)$(4)/$(3))
 instune = $1 $(deb_)/$(DEB_SOURCE)$(4)/$(2) $(deb_)/$(DEB_SOURCE)$(4)/$(3)
-einstune = echo $(instune)
+#einstune = echo $(instune)
 
 ##dh_testdir
 #override_dh_auto_configure:
@@ -84,9 +83,7 @@ override_dh_prep:
 	dh_prep --exclude=debian/tmp
 	@echo '===>> Expand install package...'
 	mkdir $(bin_root)
-#	echo tar -xzvf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) -C $(bin_root)
 	tar -xzvf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) -C $(bin_root)
-#	mkdir $(bin_root)/$(org_pkg)        # temporary - only for debugging
 
 override_dh_installdirs:
 # skipped
@@ -94,10 +91,11 @@ override_dh_installdirs:
 override_dh_auto_install:
 #--------------------------------------------------
 	$(bin_root)/$(org_pkg)/install.sh -I debian/$(DEB_SOURCE)/usr -s
-	rm debian/$(DEB_SOURCE)/usr/share/doc
+#	rm debian/$(DEB_SOURCE)/usr/share/doc
+	$(call instune,mv,doc,license.txt,/usr/share)
 #  -I, --install-dir <dir>     specify install directory
 #  -s, --suppress-shortcut     do NOT install desktop shortcut
-#	dh_installdir
+	dh_installdirs
 
 #verride_dh_auto_install:
 #
@@ -122,13 +120,13 @@ override_dh_auto_install:
 #	chmod ugo-x $(bin_root)/$(pkg_name)/share/appdata/*
 #	$(call inst,share/appdata/openscad.xml,.sharedmimeinfo)
 #
-##override_dh_icons: instune = $1 $(deb_)/$(DEB_SOURCE)/$(2) $(deb_)/$(DEB_SOURCE)/$(3)
+override_dh_icons: einstune = echo $(instune)
 override_dh_icons: reinst = $(call einstune,mv,$(1),$(2),$(3))
 override_dh_icons: instclone = $(call einstune,cp,$(1),$(2),$(3))
 override_dh_icons:
 
-	$(call instclone,usr/share/icons/komodo16.png,/usr/share/icons/locolor/,/usr/share)
-	$(call reinst,usr/share/icons/komodo16.png,/usr/share/icons/hicolor/,/usr/share)
+	$(call instclone,komodo16.png,locolor/,/usr/share/icons)
+	$(call reinst,komodo16.png,hicolor/,/usr/share/icons)
 	dh_icons
 #
 ##override_dh_installexamples:

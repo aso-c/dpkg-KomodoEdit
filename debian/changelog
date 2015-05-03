@@ -4,9 +4,9 @@ komodoedit (8.5.3~aso+dfsg-ubuntu0.1.4) unstable; urgency=low
     Create macro 'einstune' - echoimg the 'instune' content;
     Macros 'reinst' & 'instclome' modified for using basedir & using einstune
     for debug.
-  * 
+  * Creating additional directories in the package tree.
 
- -- Solomatov A.A. <aso@netbook-aso>  Sun, 03 May 2015 19:28:40 +0400
+ -- Solomatov A.A. <aso17@ro.ru>  Sun, 03 May 2015 19:28:40 +0400
 
 komodoedit (8.5.3~aso+dfsg-ubuntu0.1.2) unstable; urgency=low
 
