@@ -1,3 +1,9 @@
+komodoedit (8.5.3~aso+dfsg-ubuntu0.2) unstable; urgency=low
+
+  * Create all icon directiries in the package tree.
+
+ -- Solomatov A.A. <aso17@ro.ru>  Mon, 04 May 2015 12:19:04 +0400
+
 komodoedit (8.5.3~aso+dfsg-ubuntu0.1.4) unstable; urgency=low
 
   * Modify macro 'instune' for users basedir added at package tree root;
