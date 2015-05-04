@@ -1,6 +1,8 @@
 komodoedit (8.5.3~aso+dfsg-ubuntu0.2) unstable; urgency=low
 
   * Create all icon directiries in the package tree.
+  * Create macros 'icontune' - short form for copyng icons
+    on its final places (no macro way).
 
  -- Solomatov A.A. <aso17@ro.ru>  Mon, 04 May 2015 12:19:04 +0400
 
