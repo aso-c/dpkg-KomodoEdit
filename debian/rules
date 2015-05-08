@@ -58,12 +58,11 @@ include /usr/share/dpkg/pkg-info.mk
 	dh $@ 
 
 # uncomment if needed debugging of auxillary features (fast local options, not full install)
-#auxdebug = 1
+AUXDEBUG = 1
 
 pkg_ext = tar.gz
 
 deb_ = debian
-#src_org = $(deb_)/source
 bin_root = $(deb_)/tmp
 org_pkg := $(shell tar -tzf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) | grep -m1 'install\.sh')
 org_pkg := $(shell dirname $(org_pkg))
@@ -79,7 +78,7 @@ override_dh_prep:
  
 	dh_prep --exclude=debian/tmp
 
-ifndef auxdebug
+ifndef AUXDEBUG
 	@echo '===>> Expand install package...'
 	mkdir $(bin_root)
 	tar -xzvf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) -C $(bin_root)
@@ -88,37 +87,34 @@ endif
 override_dh_installdirs:
 # skipped
 
+#install:
 override_dh_auto_install:
 #--------------------------------------------------
-ifndef auxdebug
+ifndef AUXDEBUG
 	$(bin_root)/$(org_pkg)/install.sh -I debian/$(DEB_SOURCE)/usr -s
-#	rm debian/$(DEB_SOURCE)/usr/share/doc
 	$(call instune,mv,doc,license.txt,/usr/share)
-#  -I, --install-dir <dir>     specify install directory
-#  -s, --suppress-shortcut     do NOT install desktop shortcut
 endif
 	dh_installdirs
-ifdef auxdebug
+ifdef AUXDEBUG
 	cp -ar stub/share $(deb_)/$(DEB_SOURCE)/usr
 endif
+
+override_dh_install: | $(locono) $(allicons)
 
 
 $(locono):
 	cp $(icon_path)/komodo$@.png $(icon_path)/locolor/$@x$@/apps
 
-loicons: | $(locono)
-	#
-
 $(allicons): num = $(basename $(@:komodo%=%))
 $(allicons):
 	mv $(icon_path)/$@ $(icon_path)/hicolor/$(num)x$(num)/apps/
 
-icons: loicons | $(allicons)
-	#
+#icons: | $(locono) $(allicons)
+#	#
 
-override_dh_icons: icons
-
-	dh_icons
+#override_dh_icons: icons
+#
+#	dh_icons
 
 override_dh_makeshlibs:
 # skipped

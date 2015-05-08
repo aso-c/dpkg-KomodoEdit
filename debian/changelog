@@ -1,7 +1,8 @@
-komodoedit (8.5.3~aso+dfsg-ubuntu0.3) unstable; urgency=low
+komodoedit (8.5.3~aso+dfsg-ubuntu0.3.1) unstable; urgency=low
 
-  * Moving icon files on it's desired place by iteration on it
-    and special make rules (make way).
+  * Place icon files on it desired position in package tree
+    by iteration on it set & special make rules ("make way").
+  * Tune icon files placement in 'override_dh_install' target.
 
  -- Solomatov A.A. <aso17@ro.ru>  Fri, 08 May 2015 14:58:30 +0400
 
