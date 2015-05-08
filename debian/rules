@@ -100,7 +100,10 @@ $(locono):
 loicons: | $(locono)
 	#
 
-$(allicons): num = $(basename $@)
+#$(allicons): num = $(patsubst komodo%,%,$(basename $@))
+#$(allicons): num = $($(basename $@):komodo%=%)
+#$(allicons): num = $(@:komodo%=%)
+$(allicons): num = $(basename $(@:komodo%=%))
 $(allicons):
 #$(notdir $(wildcard $(icon_path)/*.png)):
 	echo Icon processing $@ number: $(num)
