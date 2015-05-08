@@ -65,9 +65,10 @@ deb_ = debian
 bin_root = $(deb_)/tmp
 org_pkg := $(shell tar -tzf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) | grep -m1 'install\.sh')
 org_pkg := $(shell dirname $(org_pkg))
+
 icon_path = $(deb_)/$(DEB_SOURCE)/usr/share/icons
-loicono = 16 32
-allicons = $(wildcard $(icon_path)/*.png)
+allicons = $(notdir $(wildcard $(icon_path)/*.png))
+locono = 16 32
 
 instune = $1 $(deb_)/$(DEB_SOURCE)$(4)/$(2) $(deb_)/$(DEB_SOURCE)$(4)/$(3)
 
@@ -93,32 +94,20 @@ override_dh_auto_install:
 	cp -ar stub/share $(deb_)/$(DEB_SOURCE)/usr
 
 
-$(loicono):
+$(locono):
 	cp $(icon_path)/komodo$@.png $(icon_path)/locolor/$@x$@/apps
 
-loicons: | $(loicono)
+loicons: | $(locono)
 	#
 
-#$(wildcard $(icon_path)/*.png):
-#$(allicons):
-#komodo128.png:
-$(notdir $(wildcard $(icon_path)/*.png)):
-	echo Icon processing $@
-#	echo Icon processing
+$(allicons): num = $(basename $@)
+$(allicons):
+#$(notdir $(wildcard $(icon_path)/*.png)):
+	echo Icon processing $@ number: $(num)
 
-#icons: | loicons $(wildcards $(deb_)/$(DEB_SOURCE)/usr/share/icons/*.png)
-#icons: loicons
-#icons: | $(wildcard $(icon_path)/*.png)
-#icons: | $(allicons)
-#icons: | komodo128.png
-icons: | $(notdir $(wildcard $(icon_path)/*.png))
+icons: loicons | $(allicons)
+#icons: | $(notdir $(wildcard $(icon_path)/*.png))
 #	#
-#	echo Icon processing $@
-#	echo Icon processing $@
-#	echo all icons: $(wildcard $(icon_path)/*.png)
-#	echo 'list of icons:'
-#	ls $(icon_path)
-#	echo allicons - $(allicons)
 
 override_dh_icons: einstune = echo $(instune)
 override_dh_icons: reinst = $(call einstune,mv,$(1),$(2),$(3))
