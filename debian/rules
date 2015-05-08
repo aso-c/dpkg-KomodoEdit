@@ -100,32 +100,28 @@ $(locono):
 loicons: | $(locono)
 	#
 
-#$(allicons): num = $(patsubst komodo%,%,$(basename $@))
-#$(allicons): num = $($(basename $@):komodo%=%)
-#$(allicons): num = $(@:komodo%=%)
 $(allicons): num = $(basename $(@:komodo%=%))
 $(allicons):
-#$(notdir $(wildcard $(icon_path)/*.png)):
-	echo Icon processing $@ number: $(num)
+	mv $(icon_path)/$@ $(icon_path)/hicolor/$(num)x$(num)/apps/
 
 icons: loicons | $(allicons)
 #icons: | $(notdir $(wildcard $(icon_path)/*.png))
 #	#
 
-override_dh_icons: einstune = echo $(instune)
-override_dh_icons: reinst = $(call einstune,mv,$(1),$(2),$(3))
-override_dh_icons: instclone = $(call einstune,cp,$(1),$(2),$(3))
-# icontune: move icon to corrct place. icontune, {size}, {ext}, {lo/hi}
-override_dh_icons: icontune = $(call reinst,komodo$(1).$(2)\
-,$(3)color/$(1)x$(1)/apps,/usr/share/icons)
+#override_dh_icons: einstune = echo $(instune)
+#override_dh_icons: reinst = $(call einstune,mv,$(1),$(2),$(3))
+#override_dh_icons: instclone = $(call einstune,cp,$(1),$(2),$(3))
+## icontune: move icon to corrct place. icontune, {size}, {ext}, {lo/hi}
+#override_dh_icons: icontune = $(call reinst,komodo$(1).$(2)\
+#,$(3)color/$(1)x$(1)/apps,/usr/share/icons)
 override_dh_icons: icons
 
-	$(call instclone,komodo16.png,locolor/16x16/apps,/usr/share/icons)
-#	$(call reinst,komodo16.png,hicolor/16x16/apps,/usr/share/icons)
-	$(call icontune,16,png,hi,)
-	$(call instclone,komodo32.png,locolor/32x32/apps,/usr/share/icons)
-#	$(call reinst,komodo32.png,hicolor/32x32/apps,/usr/share/icons)
-	$(call icontune,32,png,hi,)
+#	$(call instclone,komodo16.png,locolor/16x16/apps,/usr/share/icons)
+##	$(call reinst,komodo16.png,hicolor/16x16/apps,/usr/share/icons)
+#	$(call icontune,16,png,hi,)
+#	$(call instclone,komodo32.png,locolor/32x32/apps,/usr/share/icons)
+##	$(call reinst,komodo32.png,hicolor/32x32/apps,/usr/share/icons)
+#	$(call icontune,32,png,hi,)
 	dh_icons
 #
 ##override_dh_installexamples:
