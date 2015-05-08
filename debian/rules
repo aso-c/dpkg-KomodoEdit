@@ -58,7 +58,7 @@ include /usr/share/dpkg/pkg-info.mk
 	dh $@ 
 
 # uncomment if needed debugging of auxillary features (fast local options, not full install)
-AUXDEBUG = 1
+#AUXDEBUG = 1
 
 pkg_ext = tar.gz
 
@@ -101,20 +101,12 @@ endif
 
 override_dh_install: | $(locono) $(allicons)
 
-
 $(locono):
 	cp $(icon_path)/komodo$@.png $(icon_path)/locolor/$@x$@/apps
 
 $(allicons): num = $(basename $(@:komodo%=%))
 $(allicons):
 	mv $(icon_path)/$@ $(icon_path)/hicolor/$(num)x$(num)/apps/
-
-#icons: | $(locono) $(allicons)
-#	#
-
-#override_dh_icons: icons
-#
-#	dh_icons
 
 override_dh_makeshlibs:
 # skipped
