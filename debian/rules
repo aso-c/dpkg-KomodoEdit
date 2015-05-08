@@ -62,22 +62,15 @@ pkg_ext = tar.gz
 deb_ = debian
 #pkg_root = $(deb_)/openscad
 #src_org = $(deb_)/source
-#bin_org = $(deb_)/tmp/$(pkg_name)
 bin_root = $(deb_)/tmp
-#bin_root = debian/tmp
 org_pkg := $(shell tar -tzf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) | grep -m1 'install\.sh')
 org_pkg := $(shell dirname $(org_pkg))
 icon_path = $(deb_)/$(DEB_SOURCE)/usr/share/icons
+loicono = 16 32
+allicons = $(wildcard $(icon_path)/*.png)
 
 instune = $1 $(deb_)/$(DEB_SOURCE)$(4)/$(2) $(deb_)/$(DEB_SOURCE)$(4)/$(3)
-#einstune = echo $(instune)
 
-##dh_testdir
-#override_dh_auto_configure:
-##override_dh_auto_build: pkg_dir = $(bin_root)/abcdefg
-#override_dh_auto_build:
-
-##dh_auto_test
 
 override_dh_prep:
  
@@ -99,45 +92,33 @@ override_dh_auto_install:
 	dh_installdirs
 	cp -ar stub/share $(deb_)/$(DEB_SOURCE)/usr
 
-#verride_dh_auto_install:
-#
-#	@echo '##################################################################################'
-#	echo org_pkg dir is: $(bin_root)/$(org_pkg)
-#	ls $(bin_root)/${org_pkg}
-#	ls $(bin_root)
-#	#s $(deb_)
-#	@echo '##################################################################################'
-#	#cp $(bin_root)/$(org_pkg)/INSTALLDIR/* debian/$(DEB_SOURCE)/usr
-#	@echo '###auto_install###################################################################'
-#	ls $(deb_)
-#	ls $(bin_root)
-#	ls `ls -d $(bin_root)/K*`
-#	@echo '##################################################################################'
-	#cp -r $(bin_root)/$(org_pkg)/INSTALLDIR/* debian/$(DEB_SOURCE)/usr
-## Expand package tarball into debian/tmp dir.
-#	@echo 'Expand install package...'
-#	mkdir $(bin_root)
-#	tar xzvf ../$(pkg_name)-$(pkg_ver).$(pkg_arch).$(pkg_ext) -C $(bin_root)
-#	mv $(bin_root)/$(pkg_name)-$(pkg_ver) $(bin_root)/$(pkg_name)
-#	chmod ugo-x $(bin_root)/$(pkg_name)/share/appdata/*
-#	$(call inst,share/appdata/openscad.xml,.sharedmimeinfo)
-#
 
-16 32:
-	@echo $@
+$(loicono):
+	cp $(icon_path)/komodo$@.png $(icon_path)/locolor/$@x$@/apps
 
-#loicons: locono = 16 32
-loicons: | 16 32
+loicons: | $(loicono)
 	#
 
-#!#	echo $(foreach no,$(locono),$(icon_path)/komodo$(no).png)
-#!#	$(foreach no,$(locono),echo $(icon_path)/komodo$(no).png)
-#!##	$(icon_path)/*.png
-#!#	echo $?
+#$(wildcard $(icon_path)/*.png):
+#$(allicons):
+#komodo128.png:
+$(notdir $(wildcard $(icon_path)/*.png)):
+	echo Icon processing $@
+#	echo Icon processing
 
-icons: loicons $(deb_)/$(DEB_SOURCE)/usr/share/icons/*.png
-
-	echo 'Icon processing $?`'
+#icons: | loicons $(wildcards $(deb_)/$(DEB_SOURCE)/usr/share/icons/*.png)
+#icons: loicons
+#icons: | $(wildcard $(icon_path)/*.png)
+#icons: | $(allicons)
+#icons: | komodo128.png
+icons: | $(notdir $(wildcard $(icon_path)/*.png))
+#	#
+#	echo Icon processing $@
+#	echo Icon processing $@
+#	echo all icons: $(wildcard $(icon_path)/*.png)
+#	echo 'list of icons:'
+#	ls $(icon_path)
+#	echo allicons - $(allicons)
 
 override_dh_icons: einstune = echo $(instune)
 override_dh_icons: reinst = $(call einstune,mv,$(1),$(2),$(3))
