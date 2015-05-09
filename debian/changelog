@@ -1,3 +1,9 @@
+komodoedit (8.5.3~aso+dfsg-ubuntu0.3.2) unstable; urgency=low
+
+  * Create 'menu' file
+
+ -- Solomatov A.A. <aso17@ro.ru>  Sat, 09 May 2015 23:00:02 +0400
+
 komodoedit (8.5.3~aso+dfsg-ubuntu0.3.1) unstable; urgency=low
 
   * Place icon files on it desired position in package tree
