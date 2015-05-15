@@ -98,6 +98,10 @@ endif
 ifdef AUXDEBUG
 	cp -ar stub/share $(deb_)/$(DEB_SOURCE)/usr
 endif
+ifndef AUXDEBUG
+#	$(call instune,mv,license.txt,doc/,/usr/share)
+	$(call instune,mv,desktop/,applications/,/usr/share)
+endif
 
 override_dh_install: | $(locono) $(allicons)
 

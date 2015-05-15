@@ -1,4 +1,6 @@
 ?package(komodoedit):needs="X11" \
     section="Applications/Editors"\
     title="Komodo Edit 8" \
-    command="/usr/bin/komodoedit"
+    command="/usr/bin/komodoedit" \
+    #command=/home/aso/prj/Komodo-dpkg/dpkg/komodoedit-8.5.3~aso+dfsg-ubuntu0.3/debian/komodoedit/usr/lib/mozilla/komodo %F \
+    #comment="Free multi-platform editor that makes it easy to write quality code."
