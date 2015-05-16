@@ -5,3 +5,5 @@ debian/komodoedit.substvars
 debian/tmp
 koinstall.log
 *.swp
+*.swo
+

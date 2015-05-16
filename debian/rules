@@ -64,6 +64,7 @@ pkg_ext = tar.gz
 
 deb_ = debian
 bin_root = $(deb_)/tmp
+pkg_root = $(deb_)/$(DEB_SOURCE)
 org_pkg := $(shell tar -tzf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) | grep -m1 'install\.sh')
 org_pkg := $(shell dirname $(org_pkg))
 
@@ -101,6 +102,11 @@ endif
 ifndef AUXDEBUG
 #	$(call instune,mv,license.txt,doc/,/usr/share)
 	$(call instune,mv,desktop/,applications/,/usr/share)
+	sed -e 's/=\/.*debian\/$(DEB_SOURCE)\(.*\)/=\1/g' \
+		-e 's/\(icons\)\(\/komodo48\)/\1\/hicolor\/48x48\/apps\2/g' \
+	       	--in-place debian/$(DEB_SOURCE)/usr/share/applications/komodo-edit-8.desktop
+#		-e 's/\(icons\)\(\/$(DEB_SOURCE)\)/\1\/hicolor\/48x48\/apps\2/g' \
+
 endif
 
 override_dh_install: | $(locono) $(allicons)
