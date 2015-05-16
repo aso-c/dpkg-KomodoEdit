@@ -1,8 +1,11 @@
-komodoedit (8.5.3~aso+dfsg-ubuntu0.3.2) unstable; urgency=low
+komodoedit (8.5.3~aso+dfsg-ubuntu0.4) unstable; urgency=low
 
   * Create 'menu' file
+  * Move desktop file from /usr/share/desktop to /usr/share/applications
+    in the <package_root>
+  * correct icon path in komodoedit.desktop & komodoedit.menu file.
 
- -- Solomatov A.A. <aso17@ro.ru>  Sat, 09 May 2015 23:00:02 +0400
+ -- Solomatov A.A. <aso17@ro.ru>  Sat, 16 May 2015 19:45:12 +0400
 
 komodoedit (8.5.3~aso+dfsg-ubuntu0.3.1) unstable; urgency=low
 
