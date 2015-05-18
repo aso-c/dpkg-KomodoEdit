@@ -16,6 +16,7 @@ Package: komodoedit
 Architecture: i386
 #Architecture: amd64
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: komodoedit
 Description: Komodo Edit a free, fast and multi-language code editor
  Komodo Edit is a free text editor for dynamic programming languages.
  It was introduced in January 2007 to complement Active State's
