@@ -102,7 +102,8 @@ ifndef AUXDEBUG
 	$(call instune,mv,license.txt,doc/$(DEB_SOURCE)/,/usr/share)
 	$(call instune,mv,desktop/,applications/,/usr/share)
 	sed -e 's/=\/.*$(subst /,\/,$(pkg_root))\(.*\)/=\1/g' \
-		-e 's/\(icons\)\(\/$(DEB_SOURCE:edit=)48\)/\1\/hicolor\/48x48\/apps\2/g' \
+		-e 's/\(icons\)\(\/$(DEB_SOURCE:edit=)\)\(48\)/\1\/locolor\/32x32\/apps\232/g' \
+		-e 's/\(GenericName=\)Editor/\1Komodo Edit 8.5 a programming editor/' \
 	       	--in-place $(pkg_root)/usr/share/applications/komodo-edit-8.desktop
 
 endif

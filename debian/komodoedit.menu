@@ -1,8 +1,10 @@
 ?package(komodoedit):needs="X11" \
-    section="Applications/Editors"\
-    hints="Editor,Programming,Interpretation language" \
-    #command="/usr/bin/komodoedit" \
-    command=/home/aso/prj/Komodo-dpkg/dpkg/komodoedit-8.5.3~aso+dfsg-ubuntu0.3/debian/komodoedit/usr/lib/mozilla/komodo %F \
-    icon="/usr/share/icons/hicolor/48x48/apps/komodo48.xpm" \
-    comment="Free multi-platform editor that makes it easy to write quality code." \
-  title="Komodo Edit 8"
+  title="Komodo Edit 8" \
+  longtitle="Komodo Edit 8.5 for interpreted/scripting language" \
+    section="Applications/Programming" \
+    command="/usr/lib/mozilla/komodo %F" \
+    icon32x32="/usr/share/icons/locolor/32x32/apps/komodo32.xpm" \
+    icon16x16="/usr/share/icons/locolor/16x16/apps/komodo16.xpm" \
+  hints="Free multi-platform editor that makes it easy to write quality code."
+  #hints="Editor,Programming,Interpretation language" \
+    #icon="/usr/share/icons/hicolor/48x48/apps/komodo48.xpm" \
