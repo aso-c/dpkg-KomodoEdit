@@ -3,7 +3,10 @@ debian/komodoedit/
 debian/files
 debian/komodoedit.substvars
 debian/tmp
+debian/*.debhelper
 koinstall.log
 *.swp
 *.swo
-
+coreinst.sh
+stub/
+templates.ex/

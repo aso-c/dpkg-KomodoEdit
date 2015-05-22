@@ -20,7 +20,10 @@ set -e
 
 case "$1" in
     configure)
-    ;;
+	if [ "$1" = "configure" ] && [ -x "`which update-menus 2>/dev/null`" ] ; then
+	    update-menus
+	fi
+	;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
     ;;
