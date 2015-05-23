@@ -2,7 +2,7 @@
   title="Komodo Edit 8.5" \
   longtitle="Komodo Edit 8: a free, fast and multi-language code editor/" \
     section="Applications/Programming" \
-    command="/usr/lib/mozilla/komodo %F" \
+    command="/usr/lib/komodoedit/mozilla/komodo %F" \
     icon32x32="/usr/share/icons/locolor/32x32/apps/komodo32.png" \
     icon16x16="/usr/share/icons/locolor/16x16/apps/komodo16.png" \
   hints="Free multi-platform editor that makes it easy to write quality code."

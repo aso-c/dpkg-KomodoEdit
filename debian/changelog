@@ -1,3 +1,13 @@
+komodoedit (8.5.3~aso+dfsg-ubuntu0.5) unstable; urgency=low
+
+  * Create installation of Komodoedit with --dest-dir option.
+  * Move installatiom main parts from usr/lib to usr/lib/komodoedit.
+  * Change symlink usr/bin/komodo & other shortcuts
+      from usr/lib/mozilla/komodo
+      to usr/lib/komodoedit/mozilla/komodo
+
+ -- Solomatov A.A. <aso17@ro.ru>  Sat, 23 May 2015 16:57:41 +0400
+
 komodoedit (8.5.3~aso+dfsg-ubuntu0.4.4) unstable; urgency=low
 
   * Correct invalid 'menu' file.
