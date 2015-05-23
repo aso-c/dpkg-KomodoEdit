@@ -1,3 +1,9 @@
+komodoedit (8.5.3~aso+dfsg-ubuntu0.6) unstable; urgency=low
+
+  * First Release: for KomodoEdit v.8.5.3
+
+ -- Solomatov A.A. <aso17@ro.ru>  Sat, 23 May 2015 22:05:24 +0400
+
 komodoedit (8.5.3~aso+dfsg-ubuntu0.5) unstable; urgency=low
 
   * Create installation of Komodoedit with --dest-dir option.
@@ -27,7 +33,7 @@ komodoedit (8.5.3~aso+dfsg-ubuntu0.4) unstable; urgency=low
 
  -- Solomatov A.A. <aso17@ro.ru>  Sat, 16 May 2015 19:45:12 +0400
 
-komodoedit (8.5.3~aso+dfsg-ubuntu0.3.1) unstable; urgency=low
+komodoedit (8.5.3~aso+dfsg-ubuntu0.3.1) UNRELEASED; urgency=low
 
   * Place icon files on it desired position in package tree
     by iteration on it set & special make rules ("make way").
@@ -35,7 +41,7 @@ komodoedit (8.5.3~aso+dfsg-ubuntu0.3.1) unstable; urgency=low
 
  -- Solomatov A.A. <aso17@ro.ru>  Fri, 08 May 2015 14:58:30 +0400
 
-komodoedit (8.5.3~aso+dfsg-ubuntu0.2) unstable; urgency=low
+komodoedit (8.5.3~aso+dfsg-ubuntu0.2) UNRELEASED; urgency=low
 
   * Create all icon directiries in the package tree.
   * Create macros 'icontune' - short form for copyng icons
@@ -43,7 +49,7 @@ komodoedit (8.5.3~aso+dfsg-ubuntu0.2) unstable; urgency=low
 
  -- Solomatov A.A. <aso17@ro.ru>  Mon, 04 May 2015 12:19:04 +0400
 
-komodoedit (8.5.3~aso+dfsg-ubuntu0.1.4) unstable; urgency=low
+komodoedit (8.5.3~aso+dfsg-ubuntu0.1.4) UNRELEASED; urgency=low
 
   * Modify macro 'instune' for users basedir added at package tree root;
     Create macro 'einstune' - echoimg the 'instune' content;
@@ -53,7 +59,7 @@ komodoedit (8.5.3~aso+dfsg-ubuntu0.1.4) unstable; urgency=low
 
  -- Solomatov A.A. <aso17@ro.ru>  Sun, 03 May 2015 19:28:40 +0400
 
-komodoedit (8.5.3~aso+dfsg-ubuntu0.1.2) unstable; urgency=low
+komodoedit (8.5.3~aso+dfsg-ubuntu0.1.2) UNRELEASED; urgency=low
 
   * Create makefile macro 'instune' - tune files positions in the
     package tree.
@@ -66,20 +72,20 @@ komodoedit (8.5.3~aso+dfsg-ubuntu0.1.2) unstable; urgency=low
 
  -- Solomatov A.A. <aso17@ro.ru>  Sat, 02 May 2015 14:42:17 +0400
 
-komodoedit (8.5.3~aso+dfsg-ubuntu0.1) unstable; urgency=medium
+komodoedit (8.5.3~aso+dfsg-ubuntu0.1) UNRELEASED; urgency=medium
 
   * First really build of debian package for Komodo Edit.
 
  -- Solomatov A.A. <aso17@ro.ru>  Wed, 28 Jan 2015 22:34:32 +0400
 
-komodoedit (8.5.3~aso+dfsg-ubuntu0.09) unstable; urgency=medium
+komodoedit (8.5.3~aso+dfsg-ubuntu0.09) UNRELEASED; urgency=medium
 
   * Automatic install Komodo Edit into package build directory.
   * Distribute any package build functions by debian/rules targets.
 
  -- Solomatov A.A. <aso17@ro.ru>  Sun, 25 Jan 2015 22:55:19 +0400
 
-komodoedit (8.5.3~aso+dfsg-ubuntu0.08) unstable; urgency=medium
+komodoedit (8.5.3~aso+dfsg-ubuntu0.08) UNRELEASED; urgency=medium
 
   * Detect directory name of expanded original archive by
     grep 'install.sh' string from output of tar listing arc.
@@ -88,7 +94,7 @@ komodoedit (8.5.3~aso+dfsg-ubuntu0.08) unstable; urgency=medium
 
  -- Solomatov A.A. <aso17@ro.ru>  Mon, 19 Jan 2015 12:33:56 +0400
 
-komodoedit (8.5.3~aso+dfsg-ubuntu0.07) unstable; urgency=medium
+komodoedit (8.5.3~aso+dfsg-ubuntu0.07) UNRELEASED; urgency=medium
 
   * Changed format the version string - separate standard version
     from maintaned suffix by tilda '~'.
@@ -99,7 +105,7 @@ komodoedit (8.5.3~aso+dfsg-ubuntu0.07) unstable; urgency=medium
 
  -- Solomatov A.A. <aso17@ro.ru>  Fri, 09 Jan 2015 23:51:17 +0400
 
-komodoedit (8.5.3-aso+dfsg-0.03) unstable; urgency=medium
+komodoedit (8.5.3-aso+dfsg-0.03) UNRELEASED; urgency=medium
 
   * Create in debian/rules a few varuables
     for cross-building on amd64 sys for i386.
@@ -108,7 +114,7 @@ komodoedit (8.5.3-aso+dfsg-0.03) unstable; urgency=medium
 
  -- Solomatov A.A. <aso17@ro.ru>  Fri, 09 Jan 2015 23:10:31 +0400
 
-komodoedit (8.5.3-aso+dfsg-0.01) unstable; urgency=low
+komodoedit (8.5.3-aso+dfsg-0.01) UNRELEASED; urgency=low
 
   * Initial release: Komodo Edit v.8.5.3. tarball debianisation.
 
