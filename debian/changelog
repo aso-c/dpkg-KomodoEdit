@@ -1,8 +1,12 @@
-komodoedit (8.5.3~aso+dfsg-ubuntu0.4.3) unstable; urgency=low
+komodoedit (8.5.3~aso+dfsg-ubuntu0.4.4) unstable; urgency=low
 
   * Correct invalid 'menu' file.
+  * Change text in shortcut to programm - name & generalname of programm.
+  * Change reference to icon - remove directory from them;
+    into 'icon' directory - remove number (reference) part.
+  * Change extention of icon in 'menu' file - from xpm to png.
 
- -- Solomatov A.A. <aso17@ro.ru>  Wed, 20 May 2015 17:08:03 +0400
+ -- Solomatov A.A. <aso17@ro.ru>  Sat, 23 May 2015 15:58:28 +0400
 
 komodoedit (8.5.3~aso+dfsg-ubuntu0.4) unstable; urgency=low
 
