@@ -1,3 +1,10 @@
+komodoedit (8.5.4~aso+dfsg-0.7) unstable; urgency=low
+
+  * Change system of version numbering from Uduntu to Debian.
+  * Release 2: for KomodoEdit v.8.5.4
+
+ -- Solomatov A.A. <aso@netbook-aso>  Sun, 24 May 2015 00:48:59 +0400
+
 komodoedit (8.5.3~aso+dfsg-ubuntu0.6) unstable; urgency=low
 
   * First Release: for KomodoEdit v.8.5.3
