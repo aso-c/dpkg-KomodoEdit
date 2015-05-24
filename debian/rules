@@ -93,6 +93,9 @@ endif
 override_dh_installdirs:
 # skipped
 
+override_dh_auto_install: ke_verno = $(word 1,$(subst ., ,$(DEB_VERSION_UPSTREAM)))
+override_dh_auto_install: ke_revno = $(word 2,$(subst ., ,$(DEB_VERSION_UPSTREAM)))
+override_dh_auto_install: ke_motto = a free, fast and multi-language code editor
 override_dh_auto_install:
 #--------------------------------------------------
 ifndef AUXDEBUG
@@ -111,9 +114,9 @@ ifndef AUXDEBUG
 	sed -e 's/=\/.*$(subst /,\/,$(pkg_root))\(.*\)/=\1/g' \
 		-e 's/\(Icon=\).*\($(DEB_SOURCE:edit=)\)48/\1\2/g' \
 		-e 's/\(lib\)\/\(mozilla\)/\1\/$(DEB_SOURCE)\/\2/g' \
-		-e 's/\(GenericName=\).*/\1Komodo Edit 9: a free, fast and multi-language code editor/' \
-		-e 's/^Name=.*$(word 1,$(subst ., ,$(DEB_VERSION_UPSTREAM)))/&.$(word 2,$(subst ., ,$(DEB_VERSION_UPSTREAM)))/' \
-	       	--in-place $(pkg_root)/usr/share/applications/komodo-edit-9-nightly.desktop
+		-e 's/\(GenericName=\).*/\1Komodo Edit $(ke_verno): $(ke_motto)/' \
+		-e 's/^Name=.*$(ke_verno)/&.$(ke_revno)/' \
+	       	--in-place $(pkg_root)/usr/share/applications/komodo-edit-$(ke_verno)-nightly.desktop
 
 endif
 
