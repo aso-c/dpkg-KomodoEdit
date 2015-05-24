@@ -65,7 +65,7 @@ pkg_ext = tar.gz
 deb_ = debian
 bin_root = $(deb_)/tmp
 pkg_root = $(deb_)/$(DEB_SOURCE)
-org_pkg := $(shell tar -tzf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) | grep -m1 'install\.sh')
+org_pkg := $(shell tar -tzf ../$(DEB_SOURCE)_$(DEB_VERSION_UPSTREAM).orig.$(pkg_ext) | grep -m1 'install\.sh')
 org_pkg := $(shell dirname $(org_pkg))
 
 icon_path = $(pkg_root)/usr/share/icons
@@ -80,9 +80,14 @@ override_dh_prep:
 	dh_prep --exclude=debian/tmp
 
 ifndef AUXDEBUG
+	@echo Upstream version: $(DEB_VERSION_UPSTREAM)
+	@echo Upstream version w/ point substed to space: $(subst ., ,$(DEB_VERSION_UPSTREAM))
+	@echo Upstream version, first word: $(firstword $(subst ., ,$(DEB_VERSION_UPSTREAM)))
+	@echo Upstream version, first word: $(word 1,$(subst ., ,$(DEB_VERSION_UPSTREAM)))
+	#false
 	@echo '===>> Expand install package...'
 	mkdir $(bin_root)
-	tar -xzvf ../$(DEB_SOURCE)_$(DEB_VERSION_EPOCH_UPSTREAM).orig.$(pkg_ext) -C $(bin_root)
+	tar -xzvf ../$(DEB_SOURCE)_$(DEB_VERSION_UPSTREAM).orig.$(pkg_ext) -C $(bin_root)
 endif
 
 override_dh_installdirs:
@@ -106,8 +111,8 @@ ifndef AUXDEBUG
 	sed -e 's/=\/.*$(subst /,\/,$(pkg_root))\(.*\)/=\1/g' \
 		-e 's/\(Icon=\).*\($(DEB_SOURCE:edit=)\)48/\1\2/g' \
 		-e 's/\(lib\)\/\(mozilla\)/\1\/$(DEB_SOURCE)\/\2/g' \
-		-e 's/\(GenericName=\).*/\1Komodo Edit 8: a free, fast and multi-language code editor/' \
-		-e 's/^Name=.*/&.5/' \
+		-e 's/\(GenericName=\).*/\1Komodo Edit 9: a free, fast and multi-language code editor/' \
+		-e 's/^Name=.*$(word 1,$(subst ., ,$(DEB_VERSION_UPSTREAM)))/&.$(word 2,$(subst ., ,$(DEB_VERSION_UPSTREAM)))/' \
 	       	--in-place $(pkg_root)/usr/share/applications/komodo-edit-9-nightly.desktop
 
 endif
