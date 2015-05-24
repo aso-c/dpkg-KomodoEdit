@@ -108,7 +108,7 @@ ifndef AUXDEBUG
 		-e 's/\(lib\)\/\(mozilla\)/\1\/$(DEB_SOURCE)\/\2/g' \
 		-e 's/\(GenericName=\).*/\1Komodo Edit 8: a free, fast and multi-language code editor/' \
 		-e 's/^Name=.*/&.5/' \
-	       	--in-place $(pkg_root)/usr/share/applications/komodo-edit-8.desktop
+	       	--in-place $(pkg_root)/usr/share/applications/komodo-edit-9-nightly.desktop
 
 endif
 
