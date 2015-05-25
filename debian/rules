@@ -2,11 +2,10 @@
 # -*- makefile -*-
 
 # Uncomment this to turn on verbose mode.
-export DH_VERBOSE=1
+#export DH_VERBOSE=1
 
 # This has to be exported to make some magic below work.
-#export DH_OPTIONS #= -v
-export DH_OPTIONS = -v
+export DH_OPTIONS #= -v
 
 # The build architecture is the architecture on which debian/rules is run
 # and the package build is performed.
@@ -79,16 +78,9 @@ override_dh_prep:
  
 	dh_prep --exclude=debian/tmp
 
-ifndef AUXDEBUG
-	@echo Upstream version: $(DEB_VERSION_UPSTREAM)
-	@echo Upstream version w/ point substed to space: $(subst ., ,$(DEB_VERSION_UPSTREAM))
-	@echo Upstream version, first word: $(firstword $(subst ., ,$(DEB_VERSION_UPSTREAM)))
-	@echo Upstream version, first word: $(word 1,$(subst ., ,$(DEB_VERSION_UPSTREAM)))
-	#false
 	@echo '===>> Expand install package...'
 	mkdir $(bin_root)
 	tar -xzvf ../$(DEB_SOURCE)_$(DEB_VERSION_UPSTREAM).orig.$(pkg_ext) -C $(bin_root)
-endif
 
 override_dh_installdirs:
 # skipped
@@ -98,16 +90,10 @@ override_dh_auto_install: ke_revno = $(word 2,$(subst ., ,$(DEB_VERSION_UPSTREAM
 override_dh_auto_install: ke_motto = a free, fast and multi-language code editor
 override_dh_auto_install:
 #--------------------------------------------------
-ifndef AUXDEBUG
 	$(bin_root)/$(org_pkg)/install.sh -I $(pkg_root)/usr -s --dest-dir=/usr/lib/komodoedit
 	$(call instune,mv,doc,license.txt,/usr/share)
 	$(call instune,mv,lib,$(DEB_SOURCE),/usr)
-endif
 	dh_installdirs
-ifdef AUXDEBUG
-	cp -ar stub/share $(deb_)/$(DEB_SOURCE)/usr
-endif
-ifndef AUXDEBUG
 	$(call instune,mv,license.txt,doc/$(DEB_SOURCE)/,/usr/share)
 	$(call instune,mv,$(DEB_SOURCE),lib/,/usr)  # move installation into lib/komodoedit
 	$(call instune,mv,desktop/,applications/,/usr/share)
@@ -118,7 +104,6 @@ ifndef AUXDEBUG
 		-e 's/^Name=.*$(ke_verno)/&.$(ke_revno)/' \
 	       	--in-place $(pkg_root)/usr/share/applications/komodo-edit-$(ke_verno)-nightly.desktop
 
-endif
 
 override_dh_install: | $(locono) $(allicons)
 
